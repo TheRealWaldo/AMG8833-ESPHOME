@@ -1,6 +1,6 @@
 # ESPHome AMG8833
 
-Source code for creating firmware for an ESP8266 chip (d1 mini in my case) to use an AMG8833 sensor with [Thermal Vision](https://github.com/TheRealWaldo/thermal) via. [ESPHome](https://esphome.io)
+Source code for creating firmware for an ESP8266 chip (d1 mini in my case) to use an AMG8833 sensor with [Thermal Vision](https://github.com/TheRealWaldo/thermal) via. [ESPHome](https://esphome.io).
 
 ## Parts
 
@@ -14,7 +14,7 @@ Source code for creating firmware for an ESP8266 chip (d1 mini in my case) to us
 
 ## Building
 
-This project uses [ESPHome](https://esphome.io).  You'll need to provide your own `secrets.yaml` in the root directory, providing `ssid`, `password`, and `domain` if you wish to use the `amg8833.yaml` example configuration.
+This project uses [ESPHome](https://esphome.io).  You'll need to provide your own `secrets.yaml` in the root directory, providing `ssid`, `password`, and `domain` if you wish to use the [amg8833.yaml](amg8833.yaml) example configuration.
 
 ```bash
 pip3 install esphome
@@ -23,8 +23,9 @@ esphome amg8833.yaml run
 
 ## Configuring
 
-The [Thermal Vision](https://github.com/TheRealWaldo/thermal) camera can be configured by providing the AMG8833CameraComponent's resulting sensor in HASS to the configuration option `pixel_sensor` instead of `host`.
+The [Thermal Vision](https://github.com/TheRealWaldo/thermal) camera can be configured by providing the [AMG8833CameraComponent](amg8833_camera.h)'s resulting sensor in HASS to the configuration option `pixel_sensor` instead of `host`.
 
+### Example:
 ```yaml
   - platform: thermal_vision
     name: Prototype Thermal Camera
@@ -33,4 +34,4 @@ The [Thermal Vision](https://github.com/TheRealWaldo/thermal) camera can be conf
     auto_range: true
 ```
 
-It's important to note that only the Camera sensor will work in this manner.  The other sensors are provided natively via. ESPHome and `amg8833.h`.
+It's important to note that only the Camera sensor will work in this manner.  The other sensors are provided natively via. [ESPHome](https://esphome.io) and [amg8833.h](amg8833.h).
