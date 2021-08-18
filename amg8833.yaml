@@ -4,6 +4,7 @@ esphome:
   board: d1_mini
   includes:
     - amg8833.h
+    - amg8833_camera.h
   libraries:
     - "SparkFun GridEYE AMG88 Library"
 
@@ -21,10 +22,41 @@ ota:
 text_sensor:
   - platform: custom
     lambda: |-
-      auto amg8833 = new AMG8833Component();
+      auto amg8833 = new AMG8833CameraComponent();
       App.register_component(amg8833);
       return {amg8833};
 
     text_sensors:
       - name: "Sensor Pixels"
 
+sensor:
+  - platform: custom
+    lambda: |-
+      auto amg8833 = new AMG8833Component();
+      App.register_component(amg8833);
+      return {amg8833->sensor_temperature, amg8833->max_temperature, amg8833->min_temperature, amg8833->avg_temperature, amg8833->min_index, amg8833->max_index};
+
+    sensors:
+      - name: "Thermal Sensor Temperature"
+        unit_of_measurement: °C
+        accuracy_decimals: 2
+
+      - name: "Thermal Sensor Max"
+        unit_of_measurement: °C
+        accuracy_decimals: 2
+
+      - name: "Thermal Sensor Min"
+        unit_of_measurement: °C
+        accuracy_decimals: 2
+
+      - name: "Thermal Sensor Avg"
+        unit_of_measurement: °C
+        accuracy_decimals: 2
+
+      - name: "Thermal Sensor Min Index"
+        unit_of_measurement: °C
+        accuracy_decimals: 2
+
+      - name: "Thermal Sensor Max Index"
+        unit_of_measurement: °C
+        accuracy_decimals: 2
