@@ -2,6 +2,8 @@
 
 Source code for creating firmware for an ESP8266 chip (d1 mini in my case) to use an AMG8833 sensor with [Thermal Vision](https://github.com/TheRealWaldo/thermal) via. [ESPHome](https://esphome.io).
 
+Prefer to use [PlatformIO](https://platformio.org/)?  See [TheRealWaldo/esp8266-amg8833](https://github.com/TheRealWaldo/esp8266-amg8833).
+
 ## Parts
 
 [AMG8833](https://industry.panasonic.eu/components/sensors/industrial-sensors/grid-eye/amg88xx-high-performance-type/amg8833-amg8833) - I used one on a breakout board for quick prototyping from [AliExpress](https://www.aliexpress.com/item/1005001585288156.html?spm=a2g0s.9042311.0.0.27424c4dmuBfsJ).
