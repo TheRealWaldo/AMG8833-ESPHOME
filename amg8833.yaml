@@ -1,0 +1,30 @@
+esphome:
+  name: amg8833
+  platform: ESP8266
+  board: d1_mini
+  includes:
+    - amg8833.h
+  libraries:
+    - "SparkFun GridEYE AMG88 Library"
+
+wifi:
+  ssid: !secret ssid
+  password: !secret password
+  domain: !secret domain
+
+logger:
+
+api:
+
+ota:
+
+text_sensor:
+  - platform: custom
+    lambda: |-
+      auto amg8833 = new AMG8833Component();
+      App.register_component(amg8833);
+      return {amg8833};
+
+    text_sensors:
+      - name: "Sensor Pixels"
+
