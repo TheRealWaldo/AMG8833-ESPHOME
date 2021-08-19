@@ -38,6 +38,7 @@ binary_sensor:
       return {amg8833};
     binary_sensors:
       name: "Person Detected"
+      device_class: occupancy
 
 sensor:
   - platform: custom
@@ -49,24 +50,26 @@ sensor:
     sensors:
       - name: "Thermal Sensor Temperature"
         unit_of_measurement: °C
+        device_class: temperature
         accuracy_decimals: 2
 
       - name: "Thermal Sensor Max"
         unit_of_measurement: °C
+        device_class: temperature
         accuracy_decimals: 2
 
       - name: "Thermal Sensor Min"
         unit_of_measurement: °C
+        device_class: temperature
         accuracy_decimals: 2
 
       - name: "Thermal Sensor Avg"
         unit_of_measurement: °C
+        device_class: temperature
         accuracy_decimals: 2
 
       - name: "Thermal Sensor Min Index"
-        unit_of_measurement: °C
-        accuracy_decimals: 2
+        accuracy_decimals: 0
 
       - name: "Thermal Sensor Max Index"
-        unit_of_measurement: °C
-        accuracy_decimals: 2
+        accuracy_decimals: 0
