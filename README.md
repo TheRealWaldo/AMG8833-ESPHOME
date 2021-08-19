@@ -37,3 +37,13 @@ The [Thermal Vision](https://github.com/TheRealWaldo/thermal) camera can be conf
 ```
 
 It's important to note that only the Camera sensor will work in this manner.  The other sensors are provided natively via. [ESPHome](https://esphome.io) and [amg8833.h](amg8833.h).
+
+Also important to note; the pixel sensor is _very_, _very_ noisy!  You will probably want to exclude it from your HA history.
+
+### Example:
+```yaml
+history:
+  exclude:
+    entities:
+      - sensor.sensor_pixels
+```
