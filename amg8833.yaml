@@ -5,6 +5,7 @@ esphome:
   includes:
     - amg8833.h
     - amg8833_camera.h
+    - amg8833_person_detected.h
   libraries:
     - "SparkFun GridEYE AMG88 Library"
 
@@ -28,6 +29,15 @@ text_sensor:
 
     text_sensors:
       - name: "Sensor Pixels"
+
+binary_sensor:
+  - platform: custom
+    lambda: |-
+      auto amg8833 = new AMG8833PersonDetectedComponent();
+      App.register_component(amg8833);
+      return {amg8833};
+    binary_sensors:
+      name: "Person Detected"
 
 sensor:
   - platform: custom
