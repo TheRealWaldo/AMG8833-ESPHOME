@@ -1,13 +1,12 @@
+external_components:
+  - source: components
+
 esphome:
   name: amg8833
   platform: ESP8266
   board: d1_mini
-  includes:
-    - amg8833.h
-    - amg8833_camera.h
-    - amg8833_person_detected.h
   libraries:
-    - "SparkFun GridEYE AMG88 Library"
+    - "TheRealWaldo/SparkFun GridEYE AMG88 Library"
 
 wifi:
   ssid: !secret ssid
@@ -20,56 +19,31 @@ api:
 
 ota:
 
-text_sensor:
-  - platform: custom
-    lambda: |-
-      auto amg8833 = new AMG8833CameraComponent();
-      App.register_component(amg8833);
-      return {amg8833};
+i2c:
 
-    text_sensors:
-      - name: "Sensor Pixels"
+amg8833:
+
+text_sensor:
+  - platform: amg8833
+    camera_sensor:
+      name: "Sensor Pixels"
 
 binary_sensor:
-  - platform: custom
-    lambda: |-
-      auto amg8833 = new AMG8833PersonDetectedComponent();
-      App.register_component(amg8833);
-      return {amg8833};
-    binary_sensors:
-      name: "Person Detected"
-      device_class: occupancy
+  - platform: amg8833
+    name: "Person Detected"
 
 sensor:
-  - platform: custom
-    lambda: |-
-      auto amg8833 = new AMG8833Component();
-      App.register_component(amg8833);
-      return {amg8833->sensor_temperature, amg8833->max_temperature, amg8833->min_temperature, amg8833->avg_temperature, amg8833->min_index, amg8833->max_index};
-
-    sensors:
-      - name: "Thermal Sensor Temperature"
-        unit_of_measurement: °C
-        device_class: temperature
-        accuracy_decimals: 2
-
-      - name: "Thermal Sensor Max"
-        unit_of_measurement: °C
-        device_class: temperature
-        accuracy_decimals: 2
-
-      - name: "Thermal Sensor Min"
-        unit_of_measurement: °C
-        device_class: temperature
-        accuracy_decimals: 2
-
-      - name: "Thermal Sensor Avg"
-        unit_of_measurement: °C
-        device_class: temperature
-        accuracy_decimals: 2
-
-      - name: "Thermal Sensor Min Index"
-        accuracy_decimals: 0
-
-      - name: "Thermal Sensor Max Index"
-        accuracy_decimals: 0
+  - platform: amg8833
+    id: blank
+    sensor_temp:
+      name: "Thermal Sensor Temperature"
+    max_temp:
+      name: "Thermal Sensor Max"
+    min_temp:
+      name: "Thermal Sensor Min"
+    avg_temp:
+      name: "Thermal Sensor Avg"
+    min_index:
+      name: "Thermal Sensor Min Index"
+    max_index:
+      name: "Thermal Sensor Max Index"
