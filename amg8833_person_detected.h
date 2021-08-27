@@ -44,6 +44,7 @@ public:
             if (!last_state)
             {
                 publish_state(true);
+                delay_count = delay;
             }
             last_state = true;
         }
@@ -51,9 +52,13 @@ public:
         {
             if (last_state)
             {
-                publish_state(false);
+                delay_count--;
+                if (delay_count <= 0)
+                {
+                    publish_state(false);
+                    last_state = false;
+                }
             }
-            last_state = false;
         }
     }
 
@@ -61,5 +66,7 @@ protected:
     GridEYE grideye;
     static const int size = 8;
     static const int total_pixels = size * size;
+    static const int delay = 50;
+    int delay_count = delay;
     bool last_state = false;
 };
