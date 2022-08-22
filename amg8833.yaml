@@ -7,6 +7,7 @@ esphome:
     - amg8833_camera.h
     - amg8833_person_detected.h
   libraries:
+    - "Wire"
     - "SparkFun GridEYE AMG88 Library"
 
 wifi:
